@@ -37,6 +37,12 @@ public interface SatelliteBaliseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign(SatelliteBaliseParser.AssignContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SatelliteBaliseParser#create}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCreate(SatelliteBaliseParser.CreateContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SatelliteBaliseParser#args}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -48,10 +54,4 @@ public interface SatelliteBaliseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArg(SatelliteBaliseParser.ArgContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SatelliteBaliseParser#value}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValue(SatelliteBaliseParser.ValueContext ctx);
 }

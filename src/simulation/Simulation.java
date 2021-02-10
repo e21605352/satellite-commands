@@ -18,11 +18,8 @@ import generated.SatelliteBaliseLexer;
 import generated.SatelliteBaliseParser;
 import graphiclayer.GRect;
 import graphiclayer.GSpace;
-import model.Memoire;
 import model.Satellite;
 import model.balise.Balise;
-import model.balise.etats.BaliseCollecte;
-import model.strategie.deplacement.Deplacement;
 import model.strategie.deplacement.DeplacementSatellite;
 import simulation.graphic.GrBalise;
 import simulation.graphic.GrSatelitte;
@@ -57,14 +54,10 @@ public class Simulation
     }
   }
 
-  public void addBalise(Memoire memoire, Point startPos, Deplacement depl, int vitesse)
+  public void addBalise(Balise balise)
   {
-    Balise balise = new Balise(memoire, vitesse);
-    balise.setPosition(startPos);
-    balise.setDeplacementCollecte(depl);
-    balise.setProfondeurCollecte(startPos.y);
-    balise.setEtat(new BaliseCollecte(balise));
-    manager.addBalise(balise);
+    this.manager.addBalise(balise);
+
     GrBalise grbal = new GrBalise();
     grbal.setModel(balise);
     this.sea.addElement(grbal);
@@ -102,8 +95,17 @@ public class Simulation
 
       SatelliteBaliseParser parser = parserFor(input);
       ParseTree tree = parser.script();
-      SatelliteBaliseVisitor mat = new SatelliteBaliseVisitor();
+      SatelliteBaliseVisitor mat = new SatelliteBaliseVisitor(this);
       mat.visit(tree);
+      this.world.open();
+      this.mainLoop();
+//      Script script = (Script) mat.resultFor((ParserRuleContext) tree);
+//
+//      Iterator<ICommande> itor = script.scriptIterator();
+//      while (itor.hasNext())
+//      {
+//        itor.next().execute();
+//      }
     }
     catch (IOException e)
     {

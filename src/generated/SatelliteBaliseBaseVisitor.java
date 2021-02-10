@@ -47,6 +47,13 @@ public class SatelliteBaliseBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCreate(SatelliteBaliseParser.CreateContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitArgs(SatelliteBaliseParser.ArgsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -55,11 +62,4 @@ public class SatelliteBaliseBaseVisitor<T> extends AbstractParseTreeVisitor<T> i
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitArg(SatelliteBaliseParser.ArgContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitValue(SatelliteBaliseParser.ValueContext ctx) { return visitChildren(ctx); }
 }

@@ -19,27 +19,27 @@ public class SatelliteBaliseParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, ENTIER=8, SYMBOL=9, 
-		ID=10;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, ID=9, 
+		ENTIER=10;
 	public static final int
-		RULE_script = 0, RULE_command = 1, RULE_call = 2, RULE_assign = 3, RULE_args = 4, 
-		RULE_arg = 5, RULE_value = 6;
+		RULE_script = 0, RULE_command = 1, RULE_call = 2, RULE_assign = 3, RULE_create = 4, 
+		RULE_args = 5, RULE_arg = 6;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"script", "command", "call", "assign", "args", "arg", "value"
+			"script", "command", "call", "assign", "create", "args", "arg"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "';'", "'.'", "'('", "')'", "'='", "','", "':'"
+			null, "';'", "'.'", "'('", "')'", "'='", "'new '", "','", "':'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, "ENTIER", "SYMBOL", "ID"
+			null, null, null, null, null, null, null, null, null, "ID", "ENTIER"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -276,8 +276,8 @@ public class SatelliteBaliseParser extends Parser {
 
 	public static class AssignContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(SatelliteBaliseParser.ID, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
+		public CreateContext create() {
+			return getRuleContext(CreateContext.class,0);
 		}
 		public AssignContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -309,7 +309,60 @@ public class SatelliteBaliseParser extends Parser {
 			setState(34);
 			match(T__4);
 			setState(35);
-			value();
+			create();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class CreateContext extends ParserRuleContext {
+		public TerminalNode ID() { return getToken(SatelliteBaliseParser.ID, 0); }
+		public ArgsContext args() {
+			return getRuleContext(ArgsContext.class,0);
+		}
+		public CreateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_create; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof SatelliteBaliseListener ) ((SatelliteBaliseListener)listener).enterCreate(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof SatelliteBaliseListener ) ((SatelliteBaliseListener)listener).exitCreate(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SatelliteBaliseVisitor ) return ((SatelliteBaliseVisitor<? extends T>)visitor).visitCreate(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final CreateContext create() throws RecognitionException {
+		CreateContext _localctx = new CreateContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_create);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(37);
+			match(T__5);
+			setState(38);
+			match(ID);
+			setState(39);
+			match(T__2);
+			setState(40);
+			args();
+			setState(41);
+			match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -351,10 +404,10 @@ public class SatelliteBaliseParser extends Parser {
 
 	public final ArgsContext args() throws RecognitionException {
 		ArgsContext _localctx = new ArgsContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_args);
+		enterRule(_localctx, 10, RULE_args);
 		int _la;
 		try {
-			setState(46);
+			setState(52);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__3:
@@ -365,21 +418,21 @@ public class SatelliteBaliseParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(38);
+				setState(44);
 				arg();
-				setState(43);
+				setState(49);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__5) {
+				while (_la==T__6) {
 					{
 					{
-					setState(39);
-					match(T__5);
-					setState(40);
+					setState(45);
+					match(T__6);
+					setState(46);
 					arg();
 					}
 					}
-					setState(45);
+					setState(51);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -402,9 +455,7 @@ public class SatelliteBaliseParser extends Parser {
 
 	public static class ArgContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(SatelliteBaliseParser.ID, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
-		}
+		public TerminalNode ENTIER() { return getToken(SatelliteBaliseParser.ENTIER, 0); }
 		public ArgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -426,86 +477,18 @@ public class SatelliteBaliseParser extends Parser {
 
 	public final ArgContext arg() throws RecognitionException {
 		ArgContext _localctx = new ArgContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_arg);
+		enterRule(_localctx, 12, RULE_arg);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(54);
 			match(ID);
-			setState(49);
-			match(T__6);
-			setState(50);
-			value();
-			setState(51);
-			match(T__5);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ValueContext extends ParserRuleContext {
-		public TerminalNode ENTIER() { return getToken(SatelliteBaliseParser.ENTIER, 0); }
-		public TerminalNode SYMBOL() { return getToken(SatelliteBaliseParser.SYMBOL, 0); }
-		public CallContext call() {
-			return getRuleContext(CallContext.class,0);
-		}
-		public ValueContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SatelliteBaliseListener ) ((SatelliteBaliseListener)listener).enterValue(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SatelliteBaliseListener ) ((SatelliteBaliseListener)listener).exitValue(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SatelliteBaliseVisitor ) return ((SatelliteBaliseVisitor<? extends T>)visitor).visitValue(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final ValueContext value() throws RecognitionException {
-		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_value);
-		try {
+			setState(55);
+			match(T__7);
 			setState(56);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case ENTIER:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(53);
-				match(ENTIER);
-				}
-				break;
-			case SYMBOL:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(54);
-				match(SYMBOL);
-				}
-				break;
-			case ID:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(55);
-				call();
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			match(ENTIER);
+			setState(57);
+			match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -520,22 +503,22 @@ public class SatelliteBaliseParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f=\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f>\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\7\2\22\n\2\f\2\16\2\25"+
 		"\13\2\3\3\3\3\5\3\31\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3"+
-		"\5\3\5\3\6\3\6\3\6\3\6\7\6,\n\6\f\6\16\6/\13\6\5\6\61\n\6\3\7\3\7\3\7"+
-		"\3\7\3\7\3\b\3\b\3\b\5\b;\n\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\2;\2\23\3\2"+
-		"\2\2\4\30\3\2\2\2\6\34\3\2\2\2\b#\3\2\2\2\n\60\3\2\2\2\f\62\3\2\2\2\16"+
-		":\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24"+
-		"\3\2\2\2\24\3\3\2\2\2\25\23\3\2\2\2\26\31\5\6\4\2\27\31\5\b\5\2\30\26"+
-		"\3\2\2\2\30\27\3\2\2\2\31\32\3\2\2\2\32\33\7\3\2\2\33\5\3\2\2\2\34\35"+
-		"\7\f\2\2\35\36\7\4\2\2\36\37\7\f\2\2\37 \7\5\2\2 !\5\n\6\2!\"\7\6\2\2"+
-		"\"\7\3\2\2\2#$\7\f\2\2$%\7\7\2\2%&\5\16\b\2&\t\3\2\2\2\'\61\3\2\2\2(-"+
-		"\5\f\7\2)*\7\b\2\2*,\5\f\7\2+)\3\2\2\2,/\3\2\2\2-+\3\2\2\2-.\3\2\2\2."+
-		"\61\3\2\2\2/-\3\2\2\2\60\'\3\2\2\2\60(\3\2\2\2\61\13\3\2\2\2\62\63\7\f"+
-		"\2\2\63\64\7\t\2\2\64\65\5\16\b\2\65\66\7\b\2\2\66\r\3\2\2\2\67;\7\n\2"+
-		"\28;\7\13\2\29;\5\6\4\2:\67\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\17\3\2\2\2\7"+
-		"\23\30-\60:";
+		"\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\7\7\62\n\7\f\7\16\7\65"+
+		"\13\7\5\7\67\n\7\3\b\3\b\3\b\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\2:\2"+
+		"\23\3\2\2\2\4\30\3\2\2\2\6\34\3\2\2\2\b#\3\2\2\2\n\'\3\2\2\2\f\66\3\2"+
+		"\2\2\168\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2"+
+		"\2\23\24\3\2\2\2\24\3\3\2\2\2\25\23\3\2\2\2\26\31\5\6\4\2\27\31\5\b\5"+
+		"\2\30\26\3\2\2\2\30\27\3\2\2\2\31\32\3\2\2\2\32\33\7\3\2\2\33\5\3\2\2"+
+		"\2\34\35\7\13\2\2\35\36\7\4\2\2\36\37\7\13\2\2\37 \7\5\2\2 !\5\f\7\2!"+
+		"\"\7\6\2\2\"\7\3\2\2\2#$\7\13\2\2$%\7\7\2\2%&\5\n\6\2&\t\3\2\2\2\'(\7"+
+		"\b\2\2()\7\13\2\2)*\7\5\2\2*+\5\f\7\2+,\7\6\2\2,\13\3\2\2\2-\67\3\2\2"+
+		"\2.\63\5\16\b\2/\60\7\t\2\2\60\62\5\16\b\2\61/\3\2\2\2\62\65\3\2\2\2\63"+
+		"\61\3\2\2\2\63\64\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\66-\3\2\2\2\66."+
+		"\3\2\2\2\67\r\3\2\2\289\7\13\2\29:\7\n\2\2:;\7\f\2\2;<\7\t\2\2<\17\3\2"+
+		"\2\2\6\23\30\63\66";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

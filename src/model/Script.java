@@ -26,7 +26,7 @@ public class Script
     this.commandes.addAll(commandes);
   }
 
-  public Iterator<ICommande> daysIterator()
+  public Iterator<ICommande> scriptIterator()
   {
     return this.commandes.iterator();
   }

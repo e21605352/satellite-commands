@@ -50,6 +50,16 @@ public interface SatelliteBaliseListener extends ParseTreeListener {
 	 */
 	void exitAssign(SatelliteBaliseParser.AssignContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SatelliteBaliseParser#create}.
+	 * @param ctx the parse tree
+	 */
+	void enterCreate(SatelliteBaliseParser.CreateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SatelliteBaliseParser#create}.
+	 * @param ctx the parse tree
+	 */
+	void exitCreate(SatelliteBaliseParser.CreateContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SatelliteBaliseParser#args}.
 	 * @param ctx the parse tree
 	 */
@@ -69,14 +79,4 @@ public interface SatelliteBaliseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitArg(SatelliteBaliseParser.ArgContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SatelliteBaliseParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterValue(SatelliteBaliseParser.ValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SatelliteBaliseParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitValue(SatelliteBaliseParser.ValueContext ctx);
 }

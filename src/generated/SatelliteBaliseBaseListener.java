@@ -66,6 +66,18 @@ public class SatelliteBaliseBaseListener implements SatelliteBaliseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCreate(SatelliteBaliseParser.CreateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCreate(SatelliteBaliseParser.CreateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArgs(SatelliteBaliseParser.ArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -85,18 +97,6 @@ public class SatelliteBaliseBaseListener implements SatelliteBaliseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArg(SatelliteBaliseParser.ArgContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterValue(SatelliteBaliseParser.ValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitValue(SatelliteBaliseParser.ValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

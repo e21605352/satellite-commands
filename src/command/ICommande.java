@@ -1,6 +1,6 @@
 package command;
 
-public interface ICommande
+public interface ICommande<T>
 {
-  public void execute();
+  public T execute();
 }
