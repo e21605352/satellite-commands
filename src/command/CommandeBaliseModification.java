@@ -2,12 +2,12 @@ package command;
 
 import java.util.Map;
 
-public class ModifyCommande implements ICommande
+public class CommandeBaliseModification implements ICommande
 {
 
   Map<String, String> arguments;
 
-  public ModifyCommande(Map<String, String> arguments)
+  public CommandeBaliseModification(Map<String, String> arguments)
   {
     this.arguments = arguments;
   }
@@ -15,7 +15,7 @@ public class ModifyCommande implements ICommande
   @Override
   public void execute()
   {
-    System.out.println(arguments);
+
   }
 
 }

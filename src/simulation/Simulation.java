@@ -20,7 +20,6 @@ import graphiclayer.GRect;
 import graphiclayer.GSpace;
 import model.Satellite;
 import model.balise.Balise;
-import model.strategie.deplacement.DeplacementSatellite;
 import simulation.graphic.GrBalise;
 import simulation.graphic.GrSatelitte;
 import visiting.SatelliteBaliseVisitor;
@@ -63,14 +62,12 @@ public class Simulation
     this.sea.addElement(grbal);
   }
 
-  public void addSatelitte(Point startPos, int vitesse)
+  public void addSatelitte(Satellite satellite)
   {
-    Satellite sat = new Satellite(vitesse);
-    sat.setPosition(startPos);
-    sat.setDeplacement(new DeplacementSatellite(-10, 1000));
-    manager.addSatellite(sat);
+    this.manager.addSatellite(satellite);
+
     GrSatelitte grSat = new GrSatelitte();
-    grSat.setModel(sat);
+    grSat.setModel(satellite);
     this.sky.addElement(grSat);
   }
 

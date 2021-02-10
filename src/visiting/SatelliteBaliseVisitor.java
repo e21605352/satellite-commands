@@ -2,12 +2,13 @@ package visiting;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 import command.CommandeBaliseCreation;
+import command.CommandeSatelliteCreation;
 import command.ICommande;
 import generated.SatelliteBaliseBaseVisitor;
 import generated.SatelliteBaliseParser.ArgContext;
@@ -27,8 +28,8 @@ public class SatelliteBaliseVisitor extends SatelliteBaliseBaseVisitor<ParserRul
 //  private final Map<String, Function<Map<String, String>, ICommande>> call_commandes = Map
 //      .of("start", args -> new StartCommande(), "stop", args -> new StopCommande(), "modify", ModifyCommande::new);
 
-  private final Map<String, BiFunction<Simulation, Map<String, String>, ICommande<? extends ElementMobile>>> creationCommandes = Map
-      .of("balise", CommandeBaliseCreation::new);
+  private final Map<String, Function<Simulation, ICommande<? extends ElementMobile>>> creationCommandes = Map
+      .of("balise", CommandeBaliseCreation::new, "satellite", CommandeSatelliteCreation::new);
 
   private ParseTreeProperty<Object> values = new ParseTreeProperty<>();
 
@@ -104,11 +105,8 @@ public class SatelliteBaliseVisitor extends SatelliteBaliseBaseVisitor<ParserRul
     ParserRuleContext parserRuleContext = super.visitCreate(ctx);
 
     String creationName = ctx.ID().getText();
-    System.out.println(creationName);
-    Map<String, String> arguments = (Map<String, String>) values.get(ctx.args());
 
-    ICommande<? extends ElementMobile> commande = this.creationCommandes.get(creationName).apply(this.simulation,
-                                                                                                 arguments);
+    ICommande<? extends ElementMobile> commande = this.creationCommandes.get(creationName).apply(this.simulation);
     this.values.put(ctx, commande.execute());
 
     return parserRuleContext;

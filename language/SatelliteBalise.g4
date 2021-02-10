@@ -9,7 +9,7 @@ command	: (call | assign) ';' ;
 
 call	: ID '.' ID '(' args ')' ;
 assign	: ID '=' create ;
-create  : 'new ' ID '(' args ')' ;
+create  : 'new ' ID '()' ;
 
 args	: | arg (',' arg)* ;
 arg		: ID ':' ENTIER ',' ;
