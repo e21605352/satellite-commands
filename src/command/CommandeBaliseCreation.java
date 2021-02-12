@@ -35,7 +35,6 @@ public class CommandeBaliseCreation implements ICommande<Balise>
     this.simulation.addBalise(balise);
 
     System.out.println(balise);
-
     return balise;
   }
 }

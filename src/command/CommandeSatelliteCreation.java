@@ -30,7 +30,6 @@ public class CommandeSatelliteCreation implements ICommande<Satellite>
     this.simulation.addSatelitte(satellite);
 
     System.out.println(satellite);
-
     return satellite;
   }
 

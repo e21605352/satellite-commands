@@ -20,7 +20,7 @@ public class SatelliteBaliseParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		ID=10, ENTIER=11;
+		ID=10, VALUE=11, WS=12;
 	public static final int
 		RULE_script = 0, RULE_command = 1, RULE_call = 2, RULE_assign = 3, RULE_create = 4, 
 		RULE_args = 5, RULE_arg = 6;
@@ -39,7 +39,8 @@ public class SatelliteBaliseParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, "ID", "ENTIER"
+			null, null, null, null, null, null, null, null, null, null, "ID", "VALUE", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -246,6 +247,7 @@ public class SatelliteBaliseParser extends Parser {
 	public final CallContext call() throws RecognitionException {
 		CallContext _localctx = new CallContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_call);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -257,9 +259,17 @@ public class SatelliteBaliseParser extends Parser {
 			match(ID);
 			setState(29);
 			match(T__2);
-			setState(30);
-			args();
 			setState(31);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==ID) {
+				{
+				setState(30);
+				args();
+				}
+			}
+
+			setState(33);
 			match(T__3);
 			}
 		}
@@ -304,11 +314,11 @@ public class SatelliteBaliseParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
-			match(ID);
-			setState(34);
-			match(T__4);
 			setState(35);
+			match(ID);
+			setState(36);
+			match(T__4);
+			setState(37);
 			create();
 			}
 		}
@@ -350,11 +360,11 @@ public class SatelliteBaliseParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(37);
-			match(T__5);
-			setState(38);
-			match(ID);
 			setState(39);
+			match(T__5);
+			setState(40);
+			match(ID);
+			setState(41);
 			match(T__6);
 			}
 		}
@@ -400,39 +410,26 @@ public class SatelliteBaliseParser extends Parser {
 		enterRule(_localctx, 10, RULE_args);
 		int _la;
 		try {
-			setState(50);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(43);
+			arg();
+			setState(48);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case T__3:
-				enterOuterAlt(_localctx, 1);
+			_la = _input.LA(1);
+			while (_la==T__7) {
 				{
-				}
-				break;
-			case ID:
-				enterOuterAlt(_localctx, 2);
 				{
-				setState(42);
+				setState(44);
+				match(T__7);
+				setState(45);
 				arg();
-				setState(47);
+				}
+				}
+				setState(50);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__7) {
-					{
-					{
-					setState(43);
-					match(T__7);
-					setState(44);
-					arg();
-					}
-					}
-					setState(49);
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				}
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -448,7 +445,7 @@ public class SatelliteBaliseParser extends Parser {
 
 	public static class ArgContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(SatelliteBaliseParser.ID, 0); }
-		public TerminalNode ENTIER() { return getToken(SatelliteBaliseParser.ENTIER, 0); }
+		public TerminalNode VALUE() { return getToken(SatelliteBaliseParser.VALUE, 0); }
 		public ArgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -474,14 +471,12 @@ public class SatelliteBaliseParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(52);
+			setState(51);
 			match(ID);
-			setState(53);
+			setState(52);
 			match(T__8);
-			setState(54);
-			match(ENTIER);
-			setState(55);
-			match(T__7);
+			setState(53);
+			match(VALUE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -496,21 +491,21 @@ public class SatelliteBaliseParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\r<\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16:\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\7\2\22\n\2\f\2\16\2\25"+
-		"\13\2\3\3\3\3\5\3\31\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3"+
-		"\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\7\7\60\n\7\f\7\16\7\63\13\7\5\7"+
-		"\65\n\7\3\b\3\b\3\b\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\28\2\23\3\2\2"+
-		"\2\4\30\3\2\2\2\6\34\3\2\2\2\b#\3\2\2\2\n\'\3\2\2\2\f\64\3\2\2\2\16\66"+
-		"\3\2\2\2\20\22\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24"+
-		"\3\2\2\2\24\3\3\2\2\2\25\23\3\2\2\2\26\31\5\6\4\2\27\31\5\b\5\2\30\26"+
-		"\3\2\2\2\30\27\3\2\2\2\31\32\3\2\2\2\32\33\7\3\2\2\33\5\3\2\2\2\34\35"+
-		"\7\f\2\2\35\36\7\4\2\2\36\37\7\f\2\2\37 \7\5\2\2 !\5\f\7\2!\"\7\6\2\2"+
-		"\"\7\3\2\2\2#$\7\f\2\2$%\7\7\2\2%&\5\n\6\2&\t\3\2\2\2\'(\7\b\2\2()\7\f"+
-		"\2\2)*\7\t\2\2*\13\3\2\2\2+\65\3\2\2\2,\61\5\16\b\2-.\7\n\2\2.\60\5\16"+
-		"\b\2/-\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\65\3\2\2\2\63"+
-		"\61\3\2\2\2\64+\3\2\2\2\64,\3\2\2\2\65\r\3\2\2\2\66\67\7\f\2\2\678\7\13"+
-		"\2\289\7\r\2\29:\7\n\2\2:\17\3\2\2\2\6\23\30\61\64";
+		"\13\2\3\3\3\3\5\3\31\n\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\5\4\"\n\4\3\4\3\4"+
+		"\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\7\7\61\n\7\f\7\16\7\64\13"+
+		"\7\3\b\3\b\3\b\3\b\3\b\2\2\t\2\4\6\b\n\f\16\2\2\2\66\2\23\3\2\2\2\4\30"+
+		"\3\2\2\2\6\34\3\2\2\2\b%\3\2\2\2\n)\3\2\2\2\f-\3\2\2\2\16\65\3\2\2\2\20"+
+		"\22\5\4\3\2\21\20\3\2\2\2\22\25\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24"+
+		"\3\3\2\2\2\25\23\3\2\2\2\26\31\5\6\4\2\27\31\5\b\5\2\30\26\3\2\2\2\30"+
+		"\27\3\2\2\2\31\32\3\2\2\2\32\33\7\3\2\2\33\5\3\2\2\2\34\35\7\f\2\2\35"+
+		"\36\7\4\2\2\36\37\7\f\2\2\37!\7\5\2\2 \"\5\f\7\2! \3\2\2\2!\"\3\2\2\2"+
+		"\"#\3\2\2\2#$\7\6\2\2$\7\3\2\2\2%&\7\f\2\2&\'\7\7\2\2\'(\5\n\6\2(\t\3"+
+		"\2\2\2)*\7\b\2\2*+\7\f\2\2+,\7\t\2\2,\13\3\2\2\2-\62\5\16\b\2./\7\n\2"+
+		"\2/\61\5\16\b\2\60.\3\2\2\2\61\64\3\2\2\2\62\60\3\2\2\2\62\63\3\2\2\2"+
+		"\63\r\3\2\2\2\64\62\3\2\2\2\65\66\7\f\2\2\66\67\7\13\2\2\678\7\r\2\28"+
+		"\17\3\2\2\2\6\23\30!\62";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

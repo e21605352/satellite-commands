@@ -7,28 +7,13 @@ grammar SatelliteBalise;
 script	: command* ;
 command	: (call | assign) ';' ;
 
-call	: ID '.' ID '(' args ')' ;
+call	: ID '.' ID '(' args? ')' ;
 assign	: ID '=' create ;
 create  : 'new ' ID '()' ;
 
-args	: | arg (',' arg)* ;
-arg		: ID ':' ENTIER ',' ;
+args	: arg (',' arg)* ;
+arg		: ID ':' VALUE ;
 
 ID		: [a-zA-Z][a-zA-Z0-9]* ;
-ENTIER	: [0-9]+ ;
-
-// Grammaire prof
-//
-// script	: command* ;
-// command	: (call | assign) ';' ;
-
-// call	: ID '.' ID '(' args ')' ;
-// assign	: ID '=' value ;
-
-// args	: | arg (',' arg)* ;
-// arg		: ID ':' value ',' ;
-
-// value	: ENTIER | SYMBOL | call ;
-// ENTIER	: [0-9]+ ;
-// SYMBOL	: '#' ID;
-// ID		: [a-zA-Z][a-zA-Z0-9]* ;
+VALUE	: [a-zA-Z0-9]+ ;
+WS  	: [ \t\r\n]+ -> skip ;

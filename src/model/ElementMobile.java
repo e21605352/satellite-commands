@@ -11,6 +11,7 @@ import simulation.Manager;
 
 public class ElementMobile implements Emitter
 {
+  boolean start = false;
   Deplacement deplacement;
   Point position;
   Integer vitesse;
@@ -27,7 +28,8 @@ public class ElementMobile implements Emitter
 
   public void tick()
   {
-    this.bouge();
+    if (this.isStart())
+      this.bouge();
   }
 
   public void bouge()
@@ -61,6 +63,16 @@ public class ElementMobile implements Emitter
   // ================================================================================
   // Accesseurs
   // ================================================================================
+
+  public boolean isStart()
+  {
+    return start;
+  }
+
+  public void setStart(boolean start)
+  {
+    this.start = start;
+  }
 
   public Deplacement getDeplacement()
   {
@@ -100,5 +112,15 @@ public class ElementMobile implements Emitter
   public void setManager(Manager manager)
   {
     this.manager = manager;
+  }
+
+  public void setPositionX(Integer x)
+  {
+    this.position.x = x;
+  }
+
+  public void setPositionY(Integer y)
+  {
+    this.position.y = y;
   }
 }
